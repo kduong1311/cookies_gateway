@@ -1,0 +1,301 @@
+http:
+  port: 8080
+admin:
+  port: 9876
+  host: localhost
+
+apiEndpoints:
+  # User Service
+  login:
+    path: /api/user/login
+    methods: [POST]
+  register:
+    path: /api/user/register
+    methods: [POST]
+  updateUser:
+    path: /api/user/:id
+    methods: [PUT]
+  getUser:
+    path: /api/user/:id
+    methods: [GET]
+  followUser:
+    path: /api/user/:id/follow
+    methods: [POST]
+  searchUser:
+    path: /api/user/search
+    methods: [GET]
+
+  # Post Service
+  createPost:
+    path: /api/posts
+    methods: [POST]
+  getAllPosts:
+    path: /api/posts
+    methods: [GET]
+  getPost:
+    path: /api/posts/:id
+    methods: [GET]
+  updatePost:
+    path: /api/posts/:id
+    methods: [PUT]
+  deletePost:
+    path: /api/posts/:id
+    methods: [DELETE]
+  likePost:
+    path: /api/posts/:id/like
+    methods: [POST]
+  unlikePost:
+    path: /api/posts/:id/unlike
+    methods: [DELETE]
+  comment:
+    path: /api/posts/:id/comments
+    methods: [POST]
+  deleteComment:
+    path: /api/posts/:postId/comments/:id
+    methods: [DELETE]
+  postsFromUser:
+    path: /api/posts/user/:userId
+    methods: [GET]
+  postsWithHashtag:
+    path: /api/posts/hashtags/:tag/posts
+    methods: [GET]
+  increaseView:
+    path: /api/posts/:id/view
+    methods: [POST]
+
+  # Shop Service
+  getAllShops:
+    path: /api/shops
+    methods: [GET]
+  getShop:
+    path: /api/shops/:id
+    methods: [GET]
+  createShop:
+    path: /api/shops
+    methods: [POST]
+  updateShop:
+    path: /api/shops/:id
+    methods: [PUT]
+  deleteShop:
+    path: /api/shops/:id
+    methods: [DELETE]
+  createShopOrder:
+    path: /api/shop/orders
+    methods: [POST]
+  getAllShopOrders:
+    path: /api/shop/orders
+    methods: [GET]
+  getShopOrder:
+    path: /api/shop/orders/:id
+    methods: [GET]
+  updateShopOrder:
+    path: /api/shop/orders/:id
+    methods: [PUT]
+  deleteShopOrder:
+    path: /api/shop/orders/:id
+    methods: [DELETE]
+  getOrdersFromShop:
+    path: /api/orders/shop/:id
+    methods: [GET]
+  getProductsFromShop:
+    path: /api/products/shop/:id
+    methods: [GET]
+
+  # Payment Service (Shop + Product)
+  getAllPayments:
+    path: /api/payments
+    methods: [GET]
+  getPayment:
+    path: /api/payments/:id
+    methods: [GET]
+  createPayment:
+    path: /api/payments
+    methods: [POST]
+
+  # Product Service
+  createProduct:
+    path: /api/products
+    methods: [POST]
+  getProduct:
+    path: /api/products/:id
+    methods: [GET]
+  updateProduct:
+    path: /api/products/:id
+    methods: [PUT]
+  getFeaturedProducts:
+    path: /api/products/featured
+    methods: [GET]
+  searchProduct:
+    path: /api/products/search
+    methods: [GET]
+  productFromCategory:
+    path: /api/products/category/:id
+    methods: [GET]
+  getAllCategories:
+    path: /api/categories
+    methods: [GET]
+  postReview:
+    path: /api/reviews/product/:id
+    methods: [POST]
+
+  createProductOrder:
+    path: /api/orders
+    methods: [POST]
+  getAllProductOrders:
+    path: /api/orders
+    methods: [GET]
+  getProductOrder:
+    path: /api/orders/:id
+    methods: [GET]
+  updateProductOrder:
+    path: /api/orders/:id
+    methods: [PUT]
+
+  # Recipe Service
+  createRecipe:
+    path: /api/recipes
+    methods: [POST]
+  getRecipe:
+    path: /api/recipes/:id
+    methods: [GET]
+  getRecipesFromPost:
+    path: /api/recipes/post/:postId
+    methods: [GET]
+  updateRecipe:
+    path: /api/recipes/:id
+    methods: [PUT]
+  getRecipesFromUser:
+    path: /api/recipes/user/:userId
+    methods: [GET]
+
+  # Notification Service
+  getUserNotifications:
+    path: /api/notifications
+    methods: [GET]
+  markAllAsRead:
+    path: /api/notifications/read-all
+    methods: [POST]
+  markNotificationAsRead:
+    path: /api/notifications/:id/read
+    methods: [POST]
+
+serviceEndpoints:
+  userService:
+    url: http://103.253.145.7:3000
+  postService:
+    url: http://103.253.145.7:3001
+  shopService:
+    url: http://103.253.145.7:3002
+  productService:
+    url: http://103.253.145.7:3003
+  recipeService:
+    url: http://103.253.145.7:3004
+  notificationService:
+    url: http://103.253.145.7:3005
+
+policies:
+  - proxy
+  - cors
+
+pipelines:
+  userPipeline:
+    apiEndpoints:
+      - login
+      - register
+      - updateUser
+      - getUser
+      - followUser
+      - searchUser
+    policies:
+      - proxy:
+          - action:
+              serviceEndpoint: userService
+
+  postPipeline:
+    apiEndpoints:
+      - createPost
+      - getAllPosts
+      - getPost
+      - updatePost
+      - deletePost
+      - likePost
+      - unlikePost
+      - comment
+      - deleteComment
+      - postsFromUser
+      - postsWithHashtag
+      - increaseView
+    policies:
+      - proxy:
+          - action:
+              serviceEndpoint: postService
+
+  shopPipeline:
+    apiEndpoints:
+      - getAllShops
+      - getShop
+      - createShop
+      - updateShop
+      - deleteShop
+      - createShopOrder
+      - getAllShopOrders
+      - getShopOrder
+      - updateShopOrder
+      - deleteShopOrder
+      - getOrdersFromShop
+      - getProductsFromShop
+    policies:
+      - proxy:
+          - action:
+              serviceEndpoint: shopService
+
+  productPipeline:
+    apiEndpoints:
+      - createProduct
+      - getProduct
+      - updateProduct
+      - getFeaturedProducts
+      - searchProduct
+      - productFromCategory
+      - getAllCategories
+      - postReview
+      - createProductOrder
+      - getAllProductOrders
+      - getProductOrder
+      - updateProductOrder
+    policies:
+      - proxy:
+          - action:
+              serviceEndpoint: productService
+
+  paymentPipeline:
+    apiEndpoints:
+      - getAllPayments
+      - getPayment
+      - createPayment
+    policies:
+      - proxy:
+          - action:
+              serviceEndpoint: productService
+
+  recipePipeline:
+    apiEndpoints:
+      - createRecipe
+      - getRecipe
+      - getRecipesFromPost
+      - updateRecipe
+      - getRecipesFromUser
+    policies:
+      - proxy:
+          - action:
+              serviceEndpoint: recipeService
+
+  notificationPipeline:
+    apiEndpoints:
+      - getUserNotifications
+      - markAllAsRead
+      - markNotificationAsRead
+    policies:
+      - proxy:
+          - action:
+              serviceEndpoint: notificationService
