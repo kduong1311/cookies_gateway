@@ -197,8 +197,29 @@ serviceEndpoints:
     url: http://103.253.145.7:3005
 
 policies:
-  - proxy
   - cors
+  - proxy
+
+cors:
+  origin: 
+    - http://localhost:3000
+    - http://103.253.145.71:3000
+    - http://127.0.0.1:3000
+  methods: 
+    - GET
+    - POST
+    - PUT
+    - DELETE
+    - OPTIONS
+    - PATCH
+  allowedHeaders:
+    - Content-Type
+    - Authorization
+    - Accept
+    - Origin
+    - X-Requested-With
+  credentials: true
+  optionsSuccessStatus: 200
 
 pipelines:
   userPipeline:
@@ -210,6 +231,7 @@ pipelines:
       - followUser
       - searchUser
     policies:
+      - cors
       - proxy:
           - action:
               serviceEndpoint: userService
@@ -229,6 +251,7 @@ pipelines:
       - postsWithHashtag
       - increaseView
     policies:
+      - cors
       - proxy:
           - action:
               serviceEndpoint: postService
@@ -248,12 +271,14 @@ pipelines:
       - getOrdersFromShop
       - getProductsFromShop
     policies:
+      - cors
       - proxy:
           - action:
               serviceEndpoint: shopService
 
   productPipeline:
     apiEndpoints:
+      - getProducts
       - createProduct
       - getProduct
       - updateProduct
@@ -267,6 +292,7 @@ pipelines:
       - getProductOrder
       - updateProductOrder
     policies:
+      - cors
       - proxy:
           - action:
               serviceEndpoint: productService
@@ -277,6 +303,7 @@ pipelines:
       - getPayment
       - createPayment
     policies:
+      - cors
       - proxy:
           - action:
               serviceEndpoint: productService
@@ -289,6 +316,7 @@ pipelines:
       - updateRecipe
       - getRecipesFromUser
     policies:
+      - cors
       - proxy:
           - action:
               serviceEndpoint: recipeService
@@ -299,6 +327,7 @@ pipelines:
       - markAllAsRead
       - markNotificationAsRead
     policies:
+      - cors
       - proxy:
           - action:
               serviceEndpoint: notificationService
