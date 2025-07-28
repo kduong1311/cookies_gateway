@@ -232,10 +232,7 @@ pipelines:
       - followUser
       - searchUser
     policies:
-      - cors: 
-          - action:
-              origin: "*"
-              credentials: true
+      - cors
       - proxy:
           - action:
               serviceEndpoint: userService
@@ -255,10 +252,7 @@ pipelines:
       - postsWithHashtag
       - increaseView
     policies:
-      - cors: 
-          - action:
-              origin: "*"
-              credentials: true
+      - cors
       - proxy:
           - action:
               serviceEndpoint: postService
@@ -278,10 +272,7 @@ pipelines:
       - getOrdersFromShop
       - getProductsFromShop
     policies:
-      - cors: 
-          - action:
-              origin: "*"
-              credentials: true
+      - cors
       - proxy:
           - action:
               serviceEndpoint: shopService
@@ -302,10 +293,7 @@ pipelines:
       - getProductOrder
       - updateProductOrder
     policies:
-      - cors: 
-          - action:
-              origin: "*"
-              credentials: true
+      - cors
       - proxy:
           - action:
               serviceEndpoint: productService
@@ -316,10 +304,7 @@ pipelines:
       - getPayment
       - createPayment
     policies:
-      - cors: 
-          - action:
-              origin: "*"
-              credentials: true
+      - cors
       - proxy:
           - action:
               serviceEndpoint: productService
@@ -332,10 +317,7 @@ pipelines:
       - updateRecipe
       - getRecipesFromUser
     policies:
-      - cors: 
-          - action:
-              origin: "*"
-              credentials: true
+      - cors
       - proxy:
           - action:
               serviceEndpoint: recipeService
@@ -346,10 +328,7 @@ pipelines:
       - markAllAsRead
       - markNotificationAsRead
     policies:
-      - cors: 
-          - action:
-              origin: "*"
-              credentials: true
+      - cors
       - proxy:
           - action:
               serviceEndpoint: notificationService
