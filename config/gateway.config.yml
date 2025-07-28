@@ -204,6 +204,7 @@ cors:
   origin: 
     - http://localhost:3000
     - http://103.253.145.71:3000
+
     - http://127.0.0.1:3000
   methods: 
     - GET
@@ -231,7 +232,7 @@ pipelines:
       - followUser
       - searchUser
     policies:
-      - cors
+      - cors:
       - proxy:
           - action:
               serviceEndpoint: userService
@@ -251,7 +252,7 @@ pipelines:
       - postsWithHashtag
       - increaseView
     policies:
-      - cors
+      - cors:
       - proxy:
           - action:
               serviceEndpoint: postService
@@ -271,7 +272,7 @@ pipelines:
       - getOrdersFromShop
       - getProductsFromShop
     policies:
-      - cors
+      - cors:
       - proxy:
           - action:
               serviceEndpoint: shopService
@@ -292,7 +293,7 @@ pipelines:
       - getProductOrder
       - updateProductOrder
     policies:
-      - cors
+      - cors:
       - proxy:
           - action:
               serviceEndpoint: productService
@@ -303,7 +304,7 @@ pipelines:
       - getPayment
       - createPayment
     policies:
-      - cors
+      - cors:
       - proxy:
           - action:
               serviceEndpoint: productService
@@ -316,7 +317,7 @@ pipelines:
       - updateRecipe
       - getRecipesFromUser
     policies:
-      - cors
+      - cors:
       - proxy:
           - action:
               serviceEndpoint: recipeService
@@ -327,7 +328,7 @@ pipelines:
       - markAllAsRead
       - markNotificationAsRead
     policies:
-      - cors
+      - cors:
       - proxy:
           - action:
               serviceEndpoint: notificationService
