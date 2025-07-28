@@ -232,7 +232,8 @@ pipelines:
       - followUser
       - searchUser
     policies:
-      - cors
+      - cors: 
+          - action: {}
       - proxy:
           - action:
               serviceEndpoint: userService
@@ -252,7 +253,8 @@ pipelines:
       - postsWithHashtag
       - increaseView
     policies:
-      - cors
+      - cors: 
+          - action: {}
       - proxy:
           - action:
               serviceEndpoint: postService
@@ -272,7 +274,8 @@ pipelines:
       - getOrdersFromShop
       - getProductsFromShop
     policies:
-      - cors
+      - cors: 
+          - action: {}
       - proxy:
           - action:
               serviceEndpoint: shopService
@@ -293,7 +296,8 @@ pipelines:
       - getProductOrder
       - updateProductOrder
     policies:
-      - cors
+      - cors: 
+          - action: {}
       - proxy:
           - action:
               serviceEndpoint: productService
@@ -304,7 +308,8 @@ pipelines:
       - getPayment
       - createPayment
     policies:
-      - cors
+      - cors: 
+          - action: {}
       - proxy:
           - action:
               serviceEndpoint: productService
@@ -317,7 +322,8 @@ pipelines:
       - updateRecipe
       - getRecipesFromUser
     policies:
-      - cors
+      - cors: 
+          - action: {}
       - proxy:
           - action:
               serviceEndpoint: recipeService
@@ -328,7 +334,8 @@ pipelines:
       - markAllAsRead
       - markNotificationAsRead
     policies:
-      - cors
+      - cors: 
+          - action: {}
       - proxy:
           - action:
               serviceEndpoint: notificationService
