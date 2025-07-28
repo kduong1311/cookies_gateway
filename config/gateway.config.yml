@@ -7,22 +7,22 @@ admin:
 apiEndpoints:
   # User Service
   login:
-    path: /api/user/login
+    path: /api/users/login
     methods: [POST]
   register:
-    path: /api/user/register
+    path: /api/users/register
     methods: [POST]
   updateUser:
-    path: /api/user/:id
+    path: /api/users/:id
     methods: [PUT]
   getUser:
-    path: /api/user/:id
+    path: /api/users/:id
     methods: [GET]
   followUser:
-    path: /api/user/:id/follow
+    path: /api/users/:id/follow
     methods: [POST]
   searchUser:
-    path: /api/user/search
+    path: /api/users/search
     methods: [GET]
 
   # Post Service
@@ -113,6 +113,9 @@ apiEndpoints:
     methods: [POST]
 
   # Product Service
+  getProducts:
+    path: /api/products/
+    methods: [GET]
   createProduct:
     path: /api/products
     methods: [POST]
