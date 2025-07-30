@@ -46,7 +46,7 @@ apiEndpoints:
     path: /api/posts/:id/like
     methods: [POST]
   unlikePost:
-    path: /api/posts/:id/unlike
+    path: /api/posts/:id/like
     methods: [DELETE]
   comment:
     path: /api/posts/:id/comments
